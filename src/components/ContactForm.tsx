@@ -1,15 +1,16 @@
 
 import { useState } from "react";
 import { Send } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactForm = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,12 +24,14 @@ const ContactForm = () => {
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitMessage("Thank you! Your message has been sent successfully.");
       setFormData({ name: "", email: "", message: "" });
       
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitMessage(null), 5000);
-    }, 1500);
+      toast({
+        title: "Success!",
+        description: "Your submission has been received. Our team will connect with you shortly.",
+        duration: 5000,
+      });
+    }, 1000);
   };
 
   return (

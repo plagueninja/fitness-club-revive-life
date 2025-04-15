@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// Sample video URL - replace with your actual fitness video URL
-const WORKOUT_VIDEO_URL = "https://player.vimeo.com/video/414860166?h=7158ba0342";
+// Updated video URLs
+const BACKGROUND_VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-people-exercising-in-a-fitness-class-6869-large.mp4";
+const WORKOUT_VIDEO_URL = "https://www.youtube.com/embed/UBMk30rjy0o?autoplay=1"; // Popular fitness video
 
 const VideoHero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -19,7 +20,7 @@ const VideoHero = () => {
           loop
           className="object-cover w-full h-full"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-people-exercising-in-a-fitness-class-6869-large.mp4" type="video/mp4" />
+          <source src={BACKGROUND_VIDEO_URL} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {/* Overlay */}
@@ -58,13 +59,12 @@ const VideoHero = () => {
 
       {/* Video Dialog */}
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-        <DialogContent className="max-w-3xl p-0 bg-black">
+        <DialogContent className="max-w-4xl p-0 bg-black">
           <div className="relative pb-[56.25%] overflow-hidden">
             <iframe 
               src={WORKOUT_VIDEO_URL}
               className="absolute top-0 left-0 w-full h-full" 
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
