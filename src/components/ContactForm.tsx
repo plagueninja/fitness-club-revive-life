@@ -36,12 +36,6 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {submitMessage && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-          {submitMessage}
-        </div>
-      )}
-      
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
           Your Name
