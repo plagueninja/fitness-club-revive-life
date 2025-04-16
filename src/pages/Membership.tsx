@@ -3,7 +3,8 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import RegistrationForm from "@/components/RegistrationForm";
-import { UserPlus, HeartHandshake } from "lucide-react";
+import { UserPlus, HeartHandshake, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Membership = () => {
   const [activeTab, setActiveTab] = useState<"member" | "trainer">("member");
@@ -19,7 +20,9 @@ const Membership = () => {
         "2 sessions with a trainer",
         "Access to group classes"
       ],
-      recommended: false
+      recommended: false,
+      link: "/basic-plan",
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Premium",
@@ -33,7 +36,9 @@ const Membership = () => {
         "Personalized workout plan",
         "Nutrition consultation"
       ],
-      recommended: true
+      recommended: true,
+      link: "/premium-plan",
+      image: "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Ultimate",
@@ -48,7 +53,9 @@ const Membership = () => {
         "Recovery sessions",
         "Exclusive app access"
       ],
-      recommended: false
+      recommended: false,
+      link: "/ultimate-plan",
+      image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -92,6 +99,13 @@ const Membership = () => {
                     Most Popular
                   </div>
                 )}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={plan.image} 
+                    alt={`${plan.name} Plan`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                   <div className="mb-4">
@@ -108,13 +122,17 @@ const Membership = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className={`w-full py-3 px-4 rounded-md font-semibold ${
-                    plan.recommended 
-                      ? 'bg-fitness-purple text-white hover:bg-opacity-90' 
-                      : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-                  } transition-colors`}>
-                    Choose Plan
-                  </button>
+                  <Link 
+                    to={plan.link}
+                    className={`w-full py-3 px-4 rounded-md font-semibold flex items-center justify-center gap-2 ${
+                      plan.recommended 
+                        ? 'bg-fitness-purple text-white hover:bg-opacity-90' 
+                        : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                    } transition-colors`}
+                  >
+                    View Plan Details
+                    <ArrowRight size={18} />
+                  </Link>
                 </div>
               </div>
             ))}
