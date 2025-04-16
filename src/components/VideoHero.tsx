@@ -1,28 +1,23 @@
-
 import { useState } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// Updated video URLs
-const BACKGROUND_VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-people-exercising-in-a-fitness-class-6869-large.mp4";
-const WORKOUT_VIDEO_URL = "https://www.youtube.com/embed/UBMk30rjy0o?autoplay=1"; // Popular fitness video
+// Updated background image URL
+const BACKGROUND_IMAGE_URL = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80";
+const WORKOUT_VIDEO_URL = "https://www.youtube.com/embed/UBMk30rjy0o?autoplay=1";
 
 const VideoHero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <section className="relative h-[600px] flex items-center overflow-hidden">
-      {/* Video Background */}
+      {/* Image Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          className="object-cover w-full h-full"
-        >
-          <source src={BACKGROUND_VIDEO_URL} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <img 
+          src={BACKGROUND_IMAGE_URL} 
+          alt="Fitness Gym Background" 
+          className="w-full h-full object-cover"
+        />
         {/* Overlay */}
         <div className="absolute inset-0 bg-fitness-darkblue opacity-70"></div>
       </div>
